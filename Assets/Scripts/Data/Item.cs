@@ -8,6 +8,7 @@ public enum ItemType
     Misc            // ±‚≈∏
 }
 
+[Serializable]
 public class Item : ICloneable
 {
     [JsonProperty] private int id;
