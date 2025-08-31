@@ -9,9 +9,4 @@ public class PlayerManager : MonoBehaviour
     {
         items = new List<Item>();
     }
-
-    private void Start()
-    {
-        
-    }
 }

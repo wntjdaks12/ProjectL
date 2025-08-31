@@ -1,26 +1,27 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 // 스탯 능력치
-public class StatAbility
+public class StatAbility : MonoBehaviour
 {
     public class StatInfo
     {
         public enum StatDataType { Main, Sub }
 
         public StatDataType statDataType;
-        public StatData statData;
+        public Stat stat;
 
-        public StatInfo(StatDataType statType, StatData statData)
+        public StatInfo(StatDataType statDataType, Stat stat)
         {
-            this.statDataType = statType;
-            this.statData = statData;
+            this.statDataType = statDataType;
+            this.stat = stat;
         }
     }
 
     public List<StatInfo> StatInfos { get; private set; }
 
-    public StatAbility()
+    private void Awake()
     {
         StatInfos = new List<StatInfo>();
     }
@@ -30,22 +31,9 @@ public class StatAbility
     /// </summary>
     /// <param name="statDataType">스탯 데이터 타입</param>
     /// <param name="statData">스탯 데이터</param>
-    public void AddStatData(StatInfo.StatDataType statDataType, StatData statData)
+    public void AddStatData(StatInfo.StatDataType statDataType, Stat stat)
     {
-        StatInfos.Add(new StatInfo(statDataType, statData));
-    }
-
-    public void UpdateStatData(StatInfo.StatDataType statDataType, Stat.StatTypes statType, float value)
-    {
-        var statInfo = StatInfos.Where(x => x.statDataType == statDataType).FirstOrDefault();
-
-        if (statInfo == null)
-        {
-        }
-        else
-        {
-            statInfo.statData.UpdateStatValue(statType, value);
-        }
+        StatInfos.Add(new StatInfo(statDataType, stat));
     }
 
     /// <summary>
@@ -53,27 +41,17 @@ public class StatAbility
     /// </summary>
     /// <param name="statDataType">스탯 데이터 타입</param>
     /// <param name="statData">스탯 데이터</param>
-    public void RemoveStatData(StatInfo.StatDataType statDataType , StatData statData)
+    public void RemoveStatData(StatInfo.StatDataType statDataType, Stat stat)
     {
-        var statInfo = StatInfos.Where(x => x.statDataType == statDataType && x.statData == statData).FirstOrDefault();
+        var statInfo = StatInfos.Where(x => x.statDataType == statDataType && x.stat.Id == stat.Id).FirstOrDefault();
 
         if (statInfo == null)
         {
         }
-        else 
+        else
         {
             StatInfos.Remove(statInfo);
         }
-    }
-
-    public void AddStatInfo(StatInfo statInfo)
-    {
-        StatInfos.Add(statInfo);
-    }
-
-    public void AddStatInfos(List<StatInfo> statInfos)
-    {
-        this.StatInfos.AddRange(statInfos);
     }
 
     // 현재 이동 속도
@@ -90,106 +68,30 @@ public class StatAbility
         get { return currentHp; }
         set { currentHp = value; }
     }
-    // 현재 마나
-    private int currentMp;
-    public int CurrentMp
-    {
-        get { return currentMp; }
-        set { currentMp = value; }
-    }
-    // 현재 스태미나
-    private int currentStamina;
-    public int CurrentStamina
-    {
-        get { return currentStamina; }
-        set { currentStamina = value; }
-    }
-    // 현재 기본 공격 사거리
-    private float currentBasicAttackRange;
-    public float CurrentBasicAttackRange
-    {
-        get { return currentBasicAttackRange; }
-        set { currentBasicAttackRange = value; }
-    }
 
     // 최대 이동 속도
     public float MaxSpeed
     {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.MaxSpeed)); }
+        get { return StatInfos.Sum(x => x.stat.MaxSpeed); }
     }
     // 최대 체력
     public int MaxHp
     {
-        get { return (int)StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.MaxHp)); }
-    }
-    // 가시 거리
-    public float VisableDistance
-    {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.VisableDistance)); }
-    }
-    // 시야 각
-    public float ViewingAngle
-    {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.ViewingAngle)); }
-    }
-    // 기본 공격 사거리
-    public float BasicAttackRange
-    {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.BasicAttackRange)); }
+        get { return (int)StatInfos.Sum(x => x.stat.MaxHp); }
     }
     // 물리 공격력
     public int AttackDamage
     {
-        get { return (int)StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.AttackDamage)); }
+        get { return (int)StatInfos.Sum(x => x.stat.AttackDamage); }
     }
     // 마법 공격력
     public int AbilityPower
     {
-        get { return (int)StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.AbilityPower)); }
+        get { return (int)StatInfos.Sum(x => x.stat.AbilityPower); }
     }
     // 총 공격력
     public int AttackPower
     {
         get { return AttackDamage + AbilityPower; }
-    }
-    // 스킬 사거리
-    public float SkillRange
-    {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.SkillRange)); }
-    }
-    // 스킬 쿨타임
-    public float SkillCooldownTime
-    {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.SkillCooldownTime)); }
-    }
-    // 물리 공격력 계수
-    public float AttackDamageMultiplier
-    {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.AttackDamageMultiplier)); }
-    }
-    // 마법 공격력 계수
-    public float AbilityPowerMultiplier
-    {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.AbilityPowerMultiplier)); }
-    }
-    // 초당 횟수
-    public float PerSecond
-    {
-        get { return StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.PerSecond)); }
-    } 
-    // 최대 마나
-    public int MaxMp
-    {
-        get { return (int)StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.MaxMp)); }
-    } 
-    // 바디 물리 공격력
-    public int BodyDamage
-    {
-        get { return (int)StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.BodyDamage)); }
-    }
-    // 최대 스태미나
-    public int MaxStamina
-    {
-        get { return (int)StatInfos.Sum(x => x.statData.GetTotalStatValue(Stat.StatTypes.Stamina)); }
     }
 }
