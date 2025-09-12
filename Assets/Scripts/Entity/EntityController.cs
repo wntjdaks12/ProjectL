@@ -32,6 +32,58 @@ public class EntityController : MonoBehaviour
     /// <param name="parent">부모에 생성 여부</param>
     /// <param name="value1">임시 데이터1</param>
     /// <returns>엔티티 오브젝트를 리턴합니다.</returns>
+    public K Spawn<T, K>(IData data, Vector3 position, Quaternion rotation, Transform parent = null) where T : Entity where K : EntityObject
+    {
+        var runTimeData = GameApplication.Instance.GameModel.RunTimeData;
+        runTimeData.AddData(data);
+
+        var entity = data as T;
+
+        var prefabInfo = GameApplication.Instance.GameModel.PresetData.ReturnData<PrefabInfo>(nameof(PrefabInfo), data.Id);
+
+        var entityObj = PoolObjectContainer.CreatePoolObject<K>(prefabInfo.Path);
+        entityObj.gameObject.SetActive(false);
+
+        if (rotation != Quaternion.identity) entityObj.transform.rotation = rotation;
+
+        entityObj.transform.position = position;
+
+        if (parent != null) entityObj.transform.SetParent(parent, false);
+
+        entityObj.gameObject.SetActive(true);
+
+        entity.Init(entityObj.transform);
+        entityObj.Init(entity);
+
+        entity.OnDataRemove += (data) =>
+        {
+            RemoveEntity(data);
+        };
+
+        runTimeData.AddData($"{typeof(T).Name}Object", entity.InstanceId, entityObj);
+
+        if (entityObj.transform.parent != null)
+        {
+            var layerName = LayerMask.LayerToName(entityObj.transform.parent.gameObject.layer);
+            ChangeLayersRecursively(entityObj.transform, layerName);
+        }
+
+        OnEntitySpawn?.Invoke(entityObj);
+
+        return entityObj;
+    }
+
+    /// <summary>
+    /// 엔티티와 엔티티 오브젝트를 생성합니다.
+    /// </summary>
+    /// <typeparam name="T">엔티티</typeparam>
+    /// <typeparam name="K">엔티티 오브젝트</typeparam>
+    /// <param name="id">아이디</param>
+    /// <param name="position">생성 위치</param>
+    /// <param name="rotation">생성 회전</param>
+    /// <param name="parent">부모에 생성 여부</param>
+    /// <param name="value1">임시 데이터1</param>
+    /// <returns>엔티티 오브젝트를 리턴합니다.</returns>
     public K Spawn<T, K>(int id, Vector3 position, Quaternion rotation, Transform parent = null) where T : Entity where K : EntityObject
     {
         var runTimeData = GameApplication.Instance.GameModel.RunTimeData;

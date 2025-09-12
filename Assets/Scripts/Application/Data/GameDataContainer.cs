@@ -115,6 +115,19 @@ public class GameDataContainer
     }
 
     /// <summary>
+    /// 데이터를 추가합니다.
+    /// </summary>
+    /// <param name="dataTableName">데이터 테이블 이름</param>
+    /// <param name="id">데이터 아이디</param>
+    /// <returns>데이터를 리턴합니다.</returns>
+    public void AddData(IData data)
+    {
+        var runTimeData = GameApplication.Instance.GameModel.RunTimeData;
+
+        runTimeData.AddData(data.ToString(), data);
+    }
+
+    /// <summary>
     /// 데이터를 삭제합니다.
     /// </summary>
     /// <param name="tableName">데이터 테이블 일름</param>

@@ -2,6 +2,14 @@
   {
     "id": 30001,
     "path": "Prefabs/Characters/Heros/Temp1Hero"
+  },
+  {
+    "id": 40001,
+    "path": "Prefabs/Weapons/Claw/Claw1"
+  },
+  {
+    "id": 50001,
+    "path": "Prefabs/Projectiles/BasicShuriken"
   }
 ]
   
