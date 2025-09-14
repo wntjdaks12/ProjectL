@@ -4,7 +4,9 @@ using System.Linq;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private List<Projectile> projectiles;
+    [SerializeField] private List<ProjectileData> projectileDatas;
+    private List<Projectile> projectiles;
+    public List<ProjectileData> ProjectileDatas => projectileDatas;
     [SerializeField] private List<HeroData> heroDatas;
     [SerializeField] private List<CharacterEquipment> characterEquipments;
     [SerializeField] private List<Weapon> weapons;
@@ -16,12 +18,16 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        projectileDatas = new List<ProjectileData>();
         projectiles = new List<Projectile>();
         heroDatas = new List<HeroData>();
         characterEquipments = new List<CharacterEquipment>();
         weapons = new List<Weapon>();
 
+        projectileDatas.Add(new ProjectileData { Id = 50001, Type = Projectile.ProjectileType.Shuriken, Count = 1 });
+        projectileDatas.Add(new ProjectileData { Id = 50002, Type = Projectile.ProjectileType.Shuriken, Count = 1 });
         projectiles.Add(new Projectile { Id = 50001, Type = Projectile.ProjectileType.Shuriken });
+        projectiles.Add(new Projectile { Id = 50002, Type = Projectile.ProjectileType.Shuriken });
 
         heroDatas.Add(new HeroData { Id = 30001 });
 

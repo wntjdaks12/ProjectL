@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using UnityEngine;
 
 public enum ItemType
 {
@@ -9,32 +10,20 @@ public enum ItemType
 }
 
 [Serializable]
-public class Item : ICloneable
+public class Item 
 {
-    [JsonProperty] private int id;
-    [JsonProperty] private ItemType itemType;
-    [JsonProperty] private int count;
+    [field: SerializeField] public int Id { get; set; }
+    [field: SerializeField] public int Count { get; set; }
 
-    public int Id => id;
-    public ItemType ItemType => itemType;
-    public int Count => count;
-
-    // 아이템 추가
-    public void AddItem(int count)
+    public void AddItem(int cocunt)
     {
-        this.count += count;
+        Count += cocunt;
     }
 
-    // 아이템 사용
     public void ConsumeItem(int count)
     {
-        var curCount = this.count - count;
+        var val = Count - count;
 
-        this.count = Math.Clamp(curCount, 0, curCount);
-    }
-
-    public object Clone()
-    {
-        return MemberwiseClone();
+        Count = Mathf.Clamp(val, 0, val);
     }
 }
