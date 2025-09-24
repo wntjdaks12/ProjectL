@@ -1,5 +1,25 @@
 [
   {
+    "id": 101,
+    "Path": "Images/Icons/Stats/MaxHp"
+  },
+  {
+    "id": 102,
+    "Path": "Images/Icons/Stats/AttackDamage"
+  },
+  {
+    "id": 103,
+    "Path": "Images/Icons/Stats/AbilityPower"
+  },
+  {
+    "id": 104,
+    "Path": "Images/Icons/Stats/AttackSpeed"
+  },
+  {
+    "id": 105,
+    "Path": "Images/Icons/Stats/MaxSpeed"
+  },
+  {
     "id": 40001,
     "Path": "Images/Icons/Weapons/Claws/Claw1"
   },

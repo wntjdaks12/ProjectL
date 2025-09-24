@@ -3,6 +3,7 @@ using UnityEngine;
 public class CharacterObject : ActorObject
 {
     [SerializeField] private StatAbility statAbility;
+    public StatAbility StatAbility => statAbility;
 
     private WeaponObject weaponObject;
 
