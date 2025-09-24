@@ -821,6 +821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8382199067394705516}
   - component: {fileID: 8382199067394705522}
+  - component: {fileID: 3432277932561153663}
   m_Layer: 5
   m_Name: ItemIHUD
   m_TagString: Untagged
@@ -857,6 +858,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8382199067394705517}
   m_CullTransparentMesh: 1
+--- !u!114 &3432277932561153663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382199067394705517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3faf7bea6e74b3e4387a8622d5229f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 8382199067144645473}
+  itemImage:
+  - {fileID: 7076009853191226378}
+  - {fileID: 1735323584255037289}
+  - {fileID: 6318600118354496155}
+  - {fileID: 3317316667095309271}
+  - {fileID: 8306827636085478477}
+  - {fileID: 6043090465184060711}
 --- !u!1 &8382199067824153779
 GameObject:
   m_ObjectHideFlags: 0

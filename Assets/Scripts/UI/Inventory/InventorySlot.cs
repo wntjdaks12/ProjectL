@@ -9,7 +9,6 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private Button slotButton;
     [SerializeField] private Image iconImage;
     [SerializeField] private Image selectedImage;
-    [SerializeField] private GameObject equipPanel;
 
     private int index;
     private Item item;
@@ -17,7 +16,7 @@ public class InventorySlot : MonoBehaviour
 
     public Item Item => item;
 
-    public void Init(int index, Item item, Action<InventorySlot> onClicked, bool isEquiped = false)
+    public void Init(int index, Item item, Action<InventorySlot> onClicked)
     {
         this.index = index;
         this.item = item;
@@ -32,36 +31,16 @@ public class InventorySlot : MonoBehaviour
             });
         }
 
-        UpdateUI(isEquiped);
+        UpdateUI();
     }
 
-    public void UpdateUI(bool isEquiped = false)
+    public void UpdateUI()
     {
         IconInfo iconInfo = GameApplication.Instance.GameModel.PresetData.ReturnData<IconInfo>(nameof(IconInfo), item.Id);
 
         if (iconImage != null) iconImage.sprite = Resources.Load<Sprite>(iconInfo.Path);
         if (countText != null) countText.text = item.Count.ToString();
         UpdateDeselectedUI();
-        UpdateUnequipPanelUI();
-
-        if (isEquiped)
-            UpdateEquipPanelUI();
-        else
-            UpdateUnequipPanelUI();
-    }
-
-    public void UpdateEquipPanelUI()
-    {
-        if (equipPanel == null) return;
-
-        equipPanel.gameObject.SetActive(true);
-    }
-
-    public void UpdateUnequipPanelUI()
-    {
-        if (equipPanel == null) return;
-
-        equipPanel.gameObject.SetActive(false);
     }
 
     public void UpdateSelectedUI()

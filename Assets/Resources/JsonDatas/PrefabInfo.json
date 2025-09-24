@@ -10,6 +10,10 @@
   {
     "id": 50001,
     "path": "Prefabs/Projectiles/BasicShuriken"
+  },
+  {
+    "id": 50002,
+    "path": "Prefabs/Projectiles/ThrowingShuriken"
   }
 ]
   

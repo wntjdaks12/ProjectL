@@ -4,8 +4,7 @@ public class ClawObject : WeaponObject
     {
         base.Init(entity);
 
-        Projectile projectile = PlayerManager.Instance.GetProjectile(Projectile.ProjectileType.Shuriken);
-
-        currentAttack = new RangeAttack(projectile, transform);
+        
+        currentAttack = new RangeAttack(transform);
     }
 }

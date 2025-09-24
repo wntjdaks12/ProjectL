@@ -1,5 +1,9 @@
 [
   {
+    "id": 40001,
+    "Path": "Images/Icons/Weapons/Claws/Claw1"
+  },
+  {
     "id": 50001,
     "Path": "Images/Icons/Projectiles/BasicShuriken"
   },

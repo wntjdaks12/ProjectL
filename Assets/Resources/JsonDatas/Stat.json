@@ -13,7 +13,11 @@
   },
   {
     "id": 50001,
-    "maxSpeed": 20
+    "maxSpeed": 35
+  },
+  {
+    "id": 50002,
+    "maxSpeed": 35
   }
 ]
   

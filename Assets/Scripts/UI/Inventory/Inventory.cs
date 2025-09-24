@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
@@ -17,10 +18,12 @@ public class Inventory : MonoBehaviour
 
     private InventorySlot selectedInvenSlot;
 
+    [SerializeField] private UnityEvent OnItemEquipped;
+
     private void Start()
     {
         InventoryModel model = new InventoryModel();
-        model.AddItem(PlayerManager.Instance.ProjectileDatas);
+        model.AddItem(PlayerManager.Instance.InvenItems);
 
         // ³ªÁß¿¡ ¼öÁ¤
         viewModel = new InventoryViewModel(model);
@@ -68,9 +71,6 @@ public class Inventory : MonoBehaviour
         view.SetActive(true);
 
         OnShow();
-
-        Cursor.lockState = CursorLockMode.None; // ¸¶¿ì½º¸¦ Áß¾Ó¿¡ °íÁ¤
-        Cursor.visible = true; // Ä¿¼­ ¼û±è
     }
 
     private void OnShow()
@@ -81,9 +81,6 @@ public class Inventory : MonoBehaviour
     public void Hide()
     {
         view.SetActive(false);
-
-        Cursor.lockState = CursorLockMode.Locked; // ¸¶¿ì½º¸¦ Áß¾Ó¿¡ °íÁ¤
-        Cursor.visible = false; // Ä¿¼­ ¼û±è
     }
 
     public void UpdateUI(ItemType itemType)
@@ -99,17 +96,24 @@ public class Inventory : MonoBehaviour
         }
 
         Item[] items = viewModel.GetItems(itemType);
+
         for (int i = 0; i < items.Length; i++)
         { 
             InventorySlot slot = Instantiate(inventorySlot, slotParent);
             slot.Init(i, items[i], (x) =>
             {
+                var index = i;
                 selectedInvenSlot.UpdateDeselectedUI();
                 selectedInvenSlot = x;
                 selectedInvenSlot.UpdateSelectedUI();
-            },
-            viewModel.CheckEquipItem(items[i].Id)
-            ); ;
+
+                viewModel.EquipItem(items[0]);
+
+                UpdateUI(itemType);
+
+                OnItemEquipped?.Invoke();
+            }
+            );
 
             if (items.Length > 0)
             {
