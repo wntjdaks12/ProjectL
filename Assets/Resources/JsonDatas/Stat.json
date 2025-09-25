@@ -9,7 +9,8 @@
   {
     "id": 40001,
     "attackDamage": 10,
-    "attackSpeed": 0.5
+    "attackSpeed": 0.5,
+    "attackRange": 5
   },
   {
     "id": 50001,
@@ -17,7 +18,7 @@
   },
   {
     "id": 50002,
-    "maxSpeed": 35
+    "maxSpeed": 35,
   }
 ]
   
