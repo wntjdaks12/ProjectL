@@ -99,4 +99,9 @@ public class StatAbility : MonoBehaviour
     {
         get { return StatInfos.Sum(x => x.stat.AttackSpeed); }
     }
+    // 공격 사거리
+    public float AttackRange
+    {
+        get { return StatInfos.Sum(x => x.stat.AttackRange); }
+    }
 }

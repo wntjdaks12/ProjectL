@@ -9,10 +9,12 @@ public class Stat : Data
     [JsonProperty] private float abilityPower;               // 마법 공격력
     [JsonProperty] private float maxSpeed;                   // 최대 이동 속도
     [JsonProperty] private float attackSpeed;                // 공격 속도
+    [JsonProperty] private float attackRange;                // 공격 사거리
 
     public float MaxHp => maxHp;    
     public float AttackDamage => attackDamage;
     public float AbilityPower => abilityPower;
     public float MaxSpeed => maxSpeed;
     public float AttackSpeed => attackSpeed;
+    public float AttackRange => attackRange;
 }
