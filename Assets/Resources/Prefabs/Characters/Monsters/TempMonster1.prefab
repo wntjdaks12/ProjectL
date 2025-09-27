@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4491717074697815489}
   - component: {fileID: 4613826458883890883}
   - component: {fileID: 8818848819485234080}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: TempMonster1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

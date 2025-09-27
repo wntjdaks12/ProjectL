@@ -1,6 +1,6 @@
 public class MeleeAttack : IAttack
 {
-    public void ExcuteAttack()
+    public void ExcuteAttack(ICaster caster)
     {
     }
 }

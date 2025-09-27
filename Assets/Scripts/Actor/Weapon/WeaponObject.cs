@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Linq;
+using System;
 
 public class WeaponObject : ActorObject
 {
@@ -15,11 +17,11 @@ public class WeaponObject : ActorObject
         statAbility?.AddStatData(StatAbility.StatInfo.StatDataType.Main, stat);
     }
 
-    public void TryAttack()
+    public void TryAttack(ICaster caster)
     {
         if (Time.time < lastAttackTime + statAbility.AttackSpeed) return;
 
-        currentAttack.ExcuteAttack();
+        currentAttack.ExcuteAttack(caster);
         lastAttackTime = Time.time;
     }
 }

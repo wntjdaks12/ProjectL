@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class HeroController : MonoBehaviour
@@ -15,13 +16,25 @@ public class HeroController : MonoBehaviour
     {
         if (heroObject == null) return;
 
-        heroObject.TryAttack();
+        Collider[] hits = Physics.OverlapSphere(transform.position, 5, 1 << LayerMask.NameToLayer("Monster"));
+
+        hits = hits.OrderBy(x => Vector3.Distance(heroObject.transform.position, x.transform.position)).ToArray();
+        if (hits.Length > 0)
+        {
+            var dir = (hits[0].transform.position - heroObject.transform.position).normalized;
+            heroObject.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+
+            heroObject.TryAttack();
+        }
+        else
+        {
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f, 1 << LayerMask.NameToLayer("Character")))
+            if (Physics.Raycast(ray, out RaycastHit hit, 100f, 1 << LayerMask.NameToLayer("Hero")))
             {
                 OnHeroClicked();
             }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterObject : ActorObject
+public class CharacterObject : ActorObject, ICaster
 {
     [SerializeField] private StatAbility statAbility;
     public StatAbility StatAbility => statAbility;
@@ -8,6 +8,7 @@ public class CharacterObject : ActorObject
     private WeaponObject weaponObject;
 
     [field: SerializeField] public Transform WeaponNode { get; private set; }
+    public Transform Caster { get; set; }
 
     public override void Init(Entity entity)
     {
@@ -15,6 +16,8 @@ public class CharacterObject : ActorObject
 
         Stat stat = GameApplication.Instance.GameModel.PresetData.ReturnData<Stat>(nameof(Stat), Entity.Id);
         statAbility?.AddStatData(StatAbility.StatInfo.StatDataType.Main, stat);
+
+        Caster = transform;
     }
 
     public void SetWeapon(WeaponObject weaponObject)
@@ -24,6 +27,6 @@ public class CharacterObject : ActorObject
 
     public void TryAttack()
     {
-        weaponObject?.TryAttack();
+        weaponObject?.TryAttack(this);
     }
 }
