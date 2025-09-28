@@ -16,7 +16,7 @@ public class HeroController : MonoBehaviour
     {
         if (heroObject == null) return;
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, 5, 1 << LayerMask.NameToLayer("Monster"));
+        Collider[] hits = Physics.OverlapSphere(transform.position, heroObject.StatAbility.AttackRange, 1 << LayerMask.NameToLayer("Monster"));
 
         hits = hits.OrderBy(x => Vector3.Distance(heroObject.transform.position, x.transform.position)).ToArray();
         if (hits.Length > 0)
