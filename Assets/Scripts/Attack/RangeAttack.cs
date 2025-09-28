@@ -15,6 +15,10 @@ public class RangeAttack : IAttack
 
         if (projectile == null) return;
 
-        GameApplication.Instance.EntityController.Spawn<Projectile, ProjectileObject>(projectile, spawn.position, caster.Caster.rotation);
+        ProjectileObject projObj = GameApplication.Instance.EntityController.Spawn<Projectile, ProjectileObject>(projectile, spawn.position, caster.Caster.rotation);
+        if (projObj is ICaster val)
+        {
+            val.Caster = caster.Caster;
+        }
     }
 }

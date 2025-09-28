@@ -20,6 +20,7 @@ public class GameModel : MonoBehaviour
     {
         // 비 휘발성 데이터 로드 ------------------------------------------------------------------------------------------
         PresetData.LoadData<Hero>(nameof(Hero), "JsonDatas/Hero"); // 영웅
+        PresetData.LoadData<Monster>(nameof(Monster), "JsonDatas/Monster"); // 몬스터
         PresetData.LoadData<PrefabInfo>(nameof(PrefabInfo), "JsonDatas/PrefabInfo"); // 프리팹 정보
         PresetData.LoadData<Stat>(nameof(Stat), "JsonDatas/Stat"); // 스탯 정보
         PresetData.LoadData<IconInfo>(nameof(IconInfo), "JsonDatas/IconInfo"); // 아이콘 정보

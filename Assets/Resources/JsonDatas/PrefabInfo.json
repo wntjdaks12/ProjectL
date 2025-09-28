@@ -1,5 +1,9 @@
 [
   {
+    "id": 10001,
+    "path": "Prefabs/Characters/Monsters/TempMonster1"
+  },
+  {
     "id": 30001,
     "path": "Prefabs/Characters/Heros/Temp1Hero"
   },

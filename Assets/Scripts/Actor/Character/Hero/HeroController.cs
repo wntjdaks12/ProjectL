@@ -29,9 +29,12 @@ public class HeroController : MonoBehaviour
         }
         else
         {
-            Vector3 dir = (hits[0].transform.position - heroObject.transform.position).normalized;
-            heroObject.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
-            heroObject.Move(dir);
+            if (hits.Length > 0)
+            {
+                Vector3 dir = (hits[0].transform.position - heroObject.transform.position).normalized;
+                heroObject.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+                heroObject.Move(dir);
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
