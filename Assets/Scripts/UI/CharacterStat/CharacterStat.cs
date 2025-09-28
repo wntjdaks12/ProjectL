@@ -41,6 +41,7 @@ public class CharacterStat : MonoBehaviour
                 case CharacterStatSlot.StatType.AbilityPower: slots[i].UpdateUI(viewModel.AbilityPower); break;
                 case CharacterStatSlot.StatType.AttackSpeed: slots[i].UpdateUI(viewModel.AttackSpeed); break;
                 case CharacterStatSlot.StatType.MaxSpeed: slots[i].UpdateUI(viewModel.MaxSpeed); break;
+                case CharacterStatSlot.StatType.AttackRange: slots[i].UpdateUI(viewModel.AttackRange); break;
             }
         }
     }

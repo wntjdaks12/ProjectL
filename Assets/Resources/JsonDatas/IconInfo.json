@@ -20,6 +20,10 @@
     "Path": "Images/Icons/Stats/MaxSpeed"
   },
   {
+    "id": 106,
+    "Path": "Images/Icons/Stats/AttackRange"
+  },
+  {
     "id": 40001,
     "Path": "Images/Icons/Weapons/Claws/Claw1"
   },

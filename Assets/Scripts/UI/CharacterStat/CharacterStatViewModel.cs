@@ -12,4 +12,5 @@ public class CharacterStatViewModel : ViewModel
     public int AttackDamage => statAbility.AttackDamage;
     public int AbilityPower => statAbility.AbilityPower;
     public float AttackSpeed => statAbility.AttackSpeed;
+    public float AttackRange => statAbility.AttackRange;
 }

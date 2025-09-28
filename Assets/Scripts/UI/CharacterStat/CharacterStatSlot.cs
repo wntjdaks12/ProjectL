@@ -10,7 +10,8 @@ public class CharacterStatSlot : MonoBehaviour
         AttackDamage = 102,
         AbilityPower = 103,
         AttackSpeed = 104,
-        MaxSpeed = 105
+        MaxSpeed = 105,
+        AttackRange = 106
     }
 
     [field: SerializeField] public StatType Type { get; private set; }
@@ -20,7 +21,6 @@ public class CharacterStatSlot : MonoBehaviour
 
     public void UpdateUI(float value)
     {
-        Debug.Log((int)Type);
         IconInfo iconInfo = GameApplication.Instance.GameModel.PresetData.ReturnData<IconInfo>(nameof(IconInfo), (int)Type);
 
         if (iconImage != null) iconImage.sprite = Resources.Load<Sprite>(iconInfo.Path);
