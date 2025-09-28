@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Linq;
-using System;
 
 public class WeaponObject : ActorObject
 {

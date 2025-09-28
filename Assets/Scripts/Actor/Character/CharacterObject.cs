@@ -29,4 +29,9 @@ public class CharacterObject : ActorObject, ICaster
     {
         weaponObject?.TryAttack(this);
     }
+
+    public void Move(Vector3 direction)
+    {
+        transform.Translate(direction * 3, Space.World);
+    }
 }
