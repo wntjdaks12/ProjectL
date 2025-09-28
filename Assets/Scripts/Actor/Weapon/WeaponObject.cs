@@ -3,6 +3,7 @@ using UnityEngine;
 public class WeaponObject : ActorObject
 {
     [SerializeField] private StatAbility statAbility;
+    public StatAbility StatAbility => statAbility;
 
     protected IAttack currentAttack;
     private float lastAttackTime;

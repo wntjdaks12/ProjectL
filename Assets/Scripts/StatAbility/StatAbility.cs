@@ -37,6 +37,16 @@ public class StatAbility : MonoBehaviour
     }
 
     /// <summary>
+    /// 스탯 데이터 추가
+    /// </summary>
+    /// <param name="statDataType">스탯 데이터 타입</param>
+    /// <param name="statData">스탯 데이터</param>
+    public void AddStatData(StatInfo.StatDataType statDataType, List<StatInfo> statInfos)
+    {
+        StatInfos.AddRange(statInfos);
+    }
+
+    /// <summary>
     /// 스텟 데이터 삭제
     /// </summary>
     /// <param name="statDataType">스탯 데이터 타입</param>

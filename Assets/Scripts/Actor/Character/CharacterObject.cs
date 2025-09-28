@@ -23,13 +23,15 @@ public class CharacterObject : ActorObject, ICaster
     public void SetWeapon(WeaponObject weaponObject)
     {
         this.weaponObject = weaponObject;
+
+        statAbility?.AddStatData(StatAbility.StatInfo.StatDataType.Sub, weaponObject.StatAbility.StatInfos);
     }
 
     public void TryAttack()
     {
         weaponObject?.TryAttack(this);
     }
-
+     
     public void Move(Vector3 direction)
     {
         transform.Translate(direction * 3, Space.World);
