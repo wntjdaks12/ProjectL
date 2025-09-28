@@ -16,18 +16,22 @@ public class HeroController : MonoBehaviour
     {
         if (heroObject == null) return;
 
-        Collider[] hits = Physics.OverlapSphere(transform.position, heroObject.StatAbility.AttackRange, 1 << LayerMask.NameToLayer("Monster"));
-
+        Collider[] hits = Physics.OverlapSphere(transform.position, 100f, 1 << LayerMask.NameToLayer("Monster"));
         hits = hits.OrderBy(x => Vector3.Distance(heroObject.transform.position, x.transform.position)).ToArray();
-        if (hits.Length > 0)
+
+        Collider[] hitsInAttackRange = hits.Where(x => Vector3.Distance(heroObject.transform.position, x.transform.position) <= heroObject.StatAbility.AttackRange).ToArray();
+        if (hitsInAttackRange.Length > 0)
         {
-            var dir = (hits[0].transform.position - heroObject.transform.position).normalized;
+            Vector3 dir = (hitsInAttackRange[0].transform.position - heroObject.transform.position).normalized;
             heroObject.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
 
             heroObject.TryAttack();
         }
         else
         {
+            Vector3 dir = (hits[0].transform.position - heroObject.transform.position).normalized;
+            heroObject.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
+            heroObject.Move(dir);
         }
 
         if (Input.GetMouseButtonDown(0))

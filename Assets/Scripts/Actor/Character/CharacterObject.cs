@@ -17,6 +17,8 @@ public class CharacterObject : ActorObject, ICaster
         Stat stat = GameApplication.Instance.GameModel.PresetData.ReturnData<Stat>(nameof(Stat), Entity.Id);
         statAbility?.AddStatData(StatAbility.StatInfo.StatDataType.Main, stat);
 
+        StatAbility.CurrentSpeed = statAbility.MaxSpeed;
+
         Caster = transform;
     }
 
@@ -34,6 +36,6 @@ public class CharacterObject : ActorObject, ICaster
      
     public void Move(Vector3 direction)
     {
-        transform.Translate(direction * 3, Space.World);
+        transform.Translate(direction * StatAbility.CurrentSpeed * Time.deltaTime, Space.World);
     }
 }
