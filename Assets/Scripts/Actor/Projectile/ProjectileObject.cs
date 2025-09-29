@@ -6,6 +6,9 @@ public class ProjectileObject : ActorObject, ICaster
 
     public Transform Caster { get; set; }
 
+    private IHeath cacheHeath;
+    private StatAbility cacheStatAbility;
+
     public override void Init(Entity entity)
     {
         base.Init(entity);
@@ -23,9 +26,25 @@ public class ProjectileObject : ActorObject, ICaster
     {
         if (other.transform == Caster) return;
 
-        if (other.transform.TryGetComponent(out IHeath target))
+        if (cacheHeath == null)
         {
-            target.Hit(10);
+            if (other.transform.TryGetComponent(out IHeath health))
+            {
+                cacheHeath = health;
+            }
+        }
+
+        if (cacheStatAbility == null)
+        {
+            if (Caster.TryGetComponent(out StatAbility statAbility))
+            {
+                cacheStatAbility = statAbility;
+            }
+        }
+
+        if (cacheHeath != null && cacheStatAbility != null)
+        {
+            cacheHeath.Hit(cacheStatAbility.AttackPower);
         }
     }
 }

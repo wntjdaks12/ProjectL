@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public Weapon GetWeapon(int characterId)
+    public Weapon GetWeapon()
     {
         WeaponData weaponData = EquipedItems.Where(x => x is WeaponData).Select(x => x as WeaponData).FirstOrDefault();
         Weapon weapon = new Weapon { Id = weaponData.Id, Type = weaponData.Type };
