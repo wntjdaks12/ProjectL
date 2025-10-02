@@ -21,10 +21,12 @@
   },
   {
     "id": 50001,
+    "attackDamage": 5,
     "maxSpeed": 35
   },
   {
     "id": 50002,
+    "attackDamage": 10,
     "maxSpeed": 35
   }
 ]

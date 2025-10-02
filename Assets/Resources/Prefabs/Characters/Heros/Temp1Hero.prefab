@@ -124,7 +124,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6071215765277205482}
   - component: {fileID: 6071215765277205483}
-  - component: {fileID: 6071215765277205485}
   - component: {fileID: -5960763579311344460}
   - component: {fileID: 3031794237963270383}
   - component: {fileID: 1186234735902897548}
@@ -166,20 +165,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <animator>k__BackingField: {fileID: 0}
   <Rigidbody>k__BackingField: {fileID: 0}
-  statAbility: {fileID: 6071215765277205485}
   <WeaponNode>k__BackingField: {fileID: 2124816976341732514}
---- !u!114 &6071215765277205485
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6071215765277205480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d3504fee943034d8cc441d8e76721e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-5960763579311344460
 MonoBehaviour:
   m_ObjectHideFlags: 0

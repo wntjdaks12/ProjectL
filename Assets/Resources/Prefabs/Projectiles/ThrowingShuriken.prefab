@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8273670470687613319}
   - component: {fileID: 8834176174855545895}
   - component: {fileID: 904277046759460449}
-  - component: {fileID: 7415672620183275731}
   m_Layer: 0
   m_Name: ThrowingShuriken
   m_TagString: Untagged
@@ -49,7 +48,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <animator>k__BackingField: {fileID: 0}
   <Rigidbody>k__BackingField: {fileID: 0}
-  statAbility: {fileID: 7415672620183275731}
 --- !u!114 &904277046759460449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,18 +61,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileObject: {fileID: 8834176174855545895}
---- !u!114 &7415672620183275731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021372568094867158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d3504fee943034d8cc441d8e76721e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4158932933743241079
 PrefabInstance:
   m_ObjectHideFlags: 0

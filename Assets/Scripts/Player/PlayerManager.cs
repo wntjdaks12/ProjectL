@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
     [field: SerializeField] public List<Item> EquipedItems { get; private set; } = new List<Item>();
 
     [field: SerializeField] public List<Item> InvenItems { get; private set; } = new List<Item>();
+    [field: SerializeField] public Dictionary<int, StatAbility> StatAbilities { get; private set; } = new Dictionary<int, StatAbility>();
 
     public List<HeroData> HeroDatas => heroDatas;
 
@@ -18,13 +19,29 @@ public class PlayerManager : MonoBehaviour
     private void Awake()
     {
         heroDatas = new List<HeroData>();
-
+         
         heroDatas.Add(new HeroData { Id = 30001 });
+        var statAbility = new StatAbility();
+        Stat stat = GameApplication.Instance.GameModel.PresetData.ReturnData<Stat>(nameof(Stat), 30001);
+        statAbility.AddStatData(StatAbility.StatInfo.StatDataType.Main, stat);
+        statAbility.CurrentSpeed = statAbility.MaxSpeed;
+        statAbility.CurrentHp = statAbility.MaxHp;
+        SetStat(30001, statAbility);
 
-        EquipedItems.Add(new WeaponData { Id = 40001, ItemType = ItemType.Equipment, RuleType = RuleType.NonStackable});
-        EquipedItems.Add(new ProjectileData { Id = 50001, ItemType = ItemType.Equipment, Type = Projectile.ProjectileType.Shuriken, Count = 1, RuleType = RuleType.NonStackable });
+        EquipItem(new WeaponData { Id = 40001, ItemType = ItemType.Equipment, RuleType = RuleType.NonStackable });
+        EquipItem(new ProjectileData { Id = 50001, ItemType = ItemType.Equipment, Type = Projectile.ProjectileType.Shuriken, Count = 1, RuleType = RuleType.NonStackable });
 
         InvenItems.Add(new ProjectileData { Id = 50002, ItemType = ItemType.Equipment, Type = Projectile.ProjectileType.Shuriken, Count = 1, RuleType = RuleType.NonStackable });
+    }
+
+    public void SetStat(int id, StatAbility statAbility)
+    {
+        StatAbilities[id] = statAbility;
+    }
+
+    public StatAbility GetStat(int heroId)
+    {
+        return StatAbilities[heroId];
     }
 
     public void EquipItem(Item item)
@@ -44,6 +61,9 @@ public class PlayerManager : MonoBehaviour
             }
 
             EquipedItems.Add(item);
+
+            Stat stat = GameApplication.Instance.GameModel.PresetData.ReturnData<Stat>(nameof(Stat), item.Id);
+            StatAbilities[30001].AddStatData(StatAbility.StatInfo.StatDataType.Sub, stat);
         }
     }
 

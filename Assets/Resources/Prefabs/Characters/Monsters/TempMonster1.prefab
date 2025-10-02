@@ -41,7 +41,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4491717074697815494}
   - component: {fileID: 5313794332277429695}
-  - component: {fileID: 4491717074697815489}
   - component: {fileID: 4613826458883890883}
   - component: {fileID: 8818848819485234080}
   m_Layer: 7
@@ -82,20 +81,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <animator>k__BackingField: {fileID: 0}
   <Rigidbody>k__BackingField: {fileID: 0}
-  statAbility: {fileID: 4491717074697815489}
   <WeaponNode>k__BackingField: {fileID: 8604232348200037006}
---- !u!114 &4491717074697815489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4491717074697815492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d3504fee943034d8cc441d8e76721e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &4613826458883890883
 BoxCollider:
   m_ObjectHideFlags: 0

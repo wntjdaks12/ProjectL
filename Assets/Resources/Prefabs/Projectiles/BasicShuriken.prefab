@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 742038478256266121}
   - component: {fileID: -981736615499809008}
   - component: {fileID: -687103290440820086}
-  - component: {fileID: 3622748559942372912}
   - component: {fileID: 3340646812678132520}
   m_Layer: 0
   m_Name: BasicShuriken
@@ -50,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <animator>k__BackingField: {fileID: 0}
   <Rigidbody>k__BackingField: {fileID: 0}
-  statAbility: {fileID: 3622748559942372912}
+  projectileSet: {fileID: 11400000, guid: 5970d0e00832afc4c9c01744283a6922, type: 2}
 --- !u!114 &-687103290440820086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,18 +63,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileObject: {fileID: -981736615499809008}
---- !u!114 &3622748559942372912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1755053692746521442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72d3504fee943034d8cc441d8e76721e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &3340646812678132520
 BoxCollider:
   m_ObjectHideFlags: 0

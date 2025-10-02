@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 // 스탯 능력치
-public class StatAbility : MonoBehaviour
+public class StatAbility
 {
     public class StatInfo
     {
@@ -19,12 +19,7 @@ public class StatAbility : MonoBehaviour
         }
     }
 
-    public List<StatInfo> StatInfos { get; private set; }
-
-    private void Awake()
-    {
-        StatInfos = new List<StatInfo>();
-    }
+    private List<StatInfo> statInfos = new List<StatInfo>();
 
     /// <summary>
     /// 스탯 데이터 추가
@@ -33,7 +28,7 @@ public class StatAbility : MonoBehaviour
     /// <param name="statData">스탯 데이터</param>
     public void AddStatData(StatInfo.StatDataType statDataType, Stat stat)
     {
-        StatInfos.Add(new StatInfo(statDataType, stat));
+        statInfos.Add(new StatInfo(statDataType, stat));
     }
 
     /// <summary>
@@ -43,7 +38,7 @@ public class StatAbility : MonoBehaviour
     /// <param name="statData">스탯 데이터</param>
     public void AddStatData(StatInfo.StatDataType statDataType, List<StatInfo> statInfos)
     {
-        StatInfos.AddRange(statInfos);
+        this.statInfos.AddRange(statInfos);
     }
 
     /// <summary>
@@ -53,14 +48,14 @@ public class StatAbility : MonoBehaviour
     /// <param name="statData">스탯 데이터</param>
     public void RemoveStatData(StatInfo.StatDataType statDataType, Stat stat)
     {
-        var statInfo = StatInfos.Where(x => x.statDataType == statDataType && x.stat.Id == stat.Id).FirstOrDefault();
+        var statInfo = statInfos.Where(x => x.statDataType == statDataType && x.stat.Id == stat.Id).FirstOrDefault();
 
         if (statInfo == null)
         {
         }
         else
         {
-            StatInfos.Remove(statInfo);
+            statInfos.Remove(statInfo);
         }
     }
 
@@ -82,22 +77,22 @@ public class StatAbility : MonoBehaviour
     // 최대 이동 속도
     public float MaxSpeed
     {
-        get { return StatInfos.Sum(x => x.stat.MaxSpeed); }
+        get { return statInfos.Sum(x => x.stat.MaxSpeed); }
     }
     // 최대 체력
     public int MaxHp
     {
-        get { return (int)StatInfos.Sum(x => x.stat.MaxHp); }
+        get { return (int)statInfos.Sum(x => x.stat.MaxHp); }
     }
     // 물리 공격력
     public int AttackDamage
     {
-        get { return (int)StatInfos.Sum(x => x.stat.AttackDamage); }
+        get { return (int)statInfos.Sum(x => x.stat.AttackDamage); }
     }
     // 마법 공격력
     public int AbilityPower
     {
-        get { return (int)StatInfos.Sum(x => x.stat.AbilityPower); }
+        get { return (int)statInfos.Sum(x => x.stat.AbilityPower); }
     }
     // 총 공격력
     public int AttackPower
@@ -107,11 +102,11 @@ public class StatAbility : MonoBehaviour
     // 공격 속도
     public float AttackSpeed
     {
-        get { return StatInfos.Sum(x => x.stat.AttackSpeed); }
+        get { return statInfos.Sum(x => x.stat.AttackSpeed); }
     }
     // 공격 사거리
     public float AttackRange
     {
-        get { return StatInfos.Sum(x => x.stat.AttackRange); }
+        get { return statInfos.Sum(x => x.stat.AttackRange); }
     }
 }

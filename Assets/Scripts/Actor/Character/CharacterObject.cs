@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class CharacterObject : ActorObject, ICaster, IHeath
+public class CharacterObject : ActorObject, ICaster, IHeath, IStatAbility
 {
-    [SerializeField] private StatAbility statAbility;
-    public StatAbility StatAbility => statAbility;
+    public StatAbility StatAbility { get; set; } = new StatAbility();
 
     private WeaponObject weaponObject;
 
@@ -18,25 +17,17 @@ public class CharacterObject : ActorObject, ICaster, IHeath
 
         character = Entity as Character;
 
-        Stat stat = GameApplication.Instance.GameModel.PresetData.ReturnData<Stat>(nameof(Stat), Entity.Id);
-        statAbility?.AddStatData(StatAbility.StatInfo.StatDataType.Main, stat);
-
-        StatAbility.CurrentSpeed = statAbility.MaxSpeed;
-        StatAbility.CurrentHp = statAbility.MaxHp;
-
         Caster = transform;
     }
 
     public void SetWeapon(WeaponObject weaponObject)
     {
         this.weaponObject = weaponObject;
-
-        statAbility?.AddStatData(StatAbility.StatInfo.StatDataType.Sub, weaponObject.StatAbility.StatInfos);
     }
 
-    public void TryAttack()
+    public void TryAttack(float attackSpeed)
     {
-        weaponObject?.TryAttack(this);
+        weaponObject?.TryAttack(this, attackSpeed);
     }
      
     public void Move(Vector3 direction)

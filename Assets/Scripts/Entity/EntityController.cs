@@ -21,6 +21,43 @@ public class EntityController : MonoBehaviour
         return entity;
     }
 
+    public void Spawn<T, K>(string prefabPath, Vector3 position, Quaternion rotation, Transform parent = null) where T : Entity where K : EntityObject
+    {
+        var runTimeData = GameApplication.Instance.GameModel.RunTimeData;
+
+        var entity = new Entity();
+        runTimeData.AddData(entity);
+
+        var entityObj = PoolObjectContainer.CreatePoolObject<K>(prefabPath);
+        entityObj.gameObject.SetActive(false);
+
+        if (rotation != Quaternion.identity) entityObj.transform.rotation = rotation;
+
+        entityObj.transform.position = position;
+
+        if (parent != null) entityObj.transform.SetParent(parent, false);
+
+        entityObj.gameObject.SetActive(true);
+
+        entity.Init(entityObj.transform);
+        entityObj.Init(entity);
+
+        entity.OnDataRemove += (data) =>
+        {
+            RemoveEntity(data);
+        };
+
+        runTimeData.AddData($"{typeof(T).Name}Object", entity.InstanceId, entityObj);
+
+        if (entityObj.transform.parent != null)
+        {
+            var layerName = LayerMask.LayerToName(entityObj.transform.parent.gameObject.layer);
+            ChangeLayersRecursively(entityObj.transform, layerName);
+        }
+
+        OnEntitySpawn?.Invoke(entityObj);
+    }
+
     /// <summary>
     /// 엔티티와 엔티티 오브젝트를 생성합니다.
     /// </summary>

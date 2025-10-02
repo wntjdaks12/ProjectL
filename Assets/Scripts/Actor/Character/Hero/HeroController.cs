@@ -25,7 +25,7 @@ public class HeroController : MonoBehaviour
             Vector3 dir = (hitsInAttackRange[0].transform.position - heroObject.transform.position).normalized;
             heroObject.transform.rotation = Quaternion.LookRotation(dir, Vector3.up);
 
-            heroObject.TryAttack();
+            heroObject.TryAttack(heroObject.StatAbility.AttackSpeed);
         }
         else
         {
