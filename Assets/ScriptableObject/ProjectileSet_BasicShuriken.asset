@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cee62e854bb1ea4e8cd85e4c5fa226d, type: 3}
   m_Name: ProjectileSet_BasicShuriken
   m_EditorClassIdentifier: 
-  hitVFX: {fileID: 6892427505113700850, guid: 61733bf60fcb3df4392ec1e1c23dfa8d, type: 3}
+  hitVFXPath: Prefabs/VFXs/VFX ShurikenHit1
